@@ -1,0 +1,4 @@
+int {
+    int x = 0;
+    return 0; 
+}
