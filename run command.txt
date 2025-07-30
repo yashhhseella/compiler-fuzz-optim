@@ -1,0 +1,6 @@
+afl-fuzz -M clang_master \
+  -i ~/everything/fuzzing-proj/seeds \
+  -o ~/everything/fuzzing-proj/out-clang \
+  -m none \
+  -- ~/everything/fuzzing-proj/llvm-project/build-afl/bin/clang \
+     -x c -O3 -c -w -o /dev/null @@ 2>/dev/null
