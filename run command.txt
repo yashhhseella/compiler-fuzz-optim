@@ -1,3 +1,4 @@
+Direct OPT:
 afl-fuzz -M clang_master \
   -i ~/everything/fuzzing-proj/seeds \
   -o ~/everything/fuzzing-proj/out-clang \
@@ -6,11 +7,28 @@ afl-fuzz -M clang_master \
      -x c -O3 -c -w -o /dev/null @@ 2>/dev/null
 
 
-
+FAST harness:
 export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
 export AFL_MAP_SIZE=8388608
 
 afl-fuzz -i /home/yashseella/everything/fuzzing-proj/seeds   -o /home/yashseella/everything/fuzzing-proj/out-dce-harness   -m none   -- /home/yashseella/everything/fuzzing-proj/harness @@
 
 
+Step 1: Seeds into IR
 
+export AFL_MAP_SIZE=8388608
+BUILD=/home/yashseella/everything/fuzzing-proj/llvm-project/build-afl
+mkdir -p /home/yashseella/everything/fuzzing-proj/seeds-ir
+for f in /home/yashseella/everything/fuzzing-proj/seeds/*.c; do
+  "$BUILD/bin/clang" -O0 -emit-llvm -S -x c "$f" \
+    -o "/home/yashseella/everything/fuzzing-proj/seeds-ir/$(basename "$f" .c).ll"
+done
+
+Step 2:
+export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+export AFL_MAP_SIZE=8388608
+"$BUILD/bin/afl-fuzz -M dce_master \
+  -i /home/yashseella/everything/fuzzing-proj/seeds-ir \
+  -o /home/yashseella/everything/fuzzing-proj/out-dce \
+  -m none \
+  -- "$BUILD/bin/opt" -passes=dce -S -o /dev/null @@ 2>/dev/null
