@@ -1,7 +1,0 @@
-# environment variables:
-AFL_DEBUG=1
-AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
-AFL_KILL_SIGNAL=9
-AFL_SKIP_BIN_CHECK=1
-# command line:
-'afl-fuzz' '-i' '/home/yashseella/everything/fuzzing-proj/seeds' '-o' '/home/yashseella/everything/fuzzing-proj/compiler-fuzz-optim/tempHarness/out' '-m' 'none' '--' 'python3' '/home/yashseella/everything/fuzzing-proj/compiler-fuzz-optim/harness.py'
