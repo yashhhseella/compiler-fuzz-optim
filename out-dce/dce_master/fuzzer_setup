@@ -1,0 +1,6 @@
+# environment variables:
+AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+AFL_KILL_SIGNAL=9
+AFL_MAP_SIZE=1048576
+# command line:
+'afl-fuzz' '-M' 'dce_master' '-i' 'seeds' '-o' 'out-dce' '-m' 'none' '--' './harness'
