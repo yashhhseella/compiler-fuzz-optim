@@ -27,7 +27,7 @@ done
 Step 2:
 export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
 export AFL_MAP_SIZE=8388608
-"$BUILD/bin/afl-fuzz -M dce_master \
+afl-fuzz (-M dce_master) <-- is optional btw \
   -i /home/yashseella/everything/fuzzing-proj/seeds-ir \
   -o /home/yashseella/everything/fuzzing-proj/out-dce \
   -m none \
