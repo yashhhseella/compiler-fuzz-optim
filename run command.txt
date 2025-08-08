@@ -4,3 +4,13 @@ afl-fuzz -M clang_master \
   -m none \
   -- ~/everything/fuzzing-proj/llvm-project/build-afl/bin/clang \
      -x c -O3 -c -w -o /dev/null @@ 2>/dev/null
+
+
+
+export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+export AFL_MAP_SIZE=8388608
+
+afl-fuzz -i /home/yashseella/everything/fuzzing-proj/seeds   -o /home/yashseella/everything/fuzzing-proj/out-dce-harness   -m none   -- /home/yashseella/everything/fuzzing-proj/harness @@
+
+
+
