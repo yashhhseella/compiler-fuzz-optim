@@ -32,3 +32,15 @@ afl-fuzz (-M dce_master) <-- is optional btw \
   -o /home/yashseella/everything/fuzzing-proj/findings \ # change this line for wherever you want the mutations to be stored
   -m none \
   -- "$BUILD/bin/opt" -passes=dce -S -o /dev/null @@ 2>/dev/null
+
+
+export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+export AFL_MAP_SIZE=8388608
+afl-fuzz 
+  -i /home/yashseella/everything/fuzzing-proj/seeds-ir \
+  -o /home/yashseella/everything/fuzzing-proj/findings \
+  -m none \
+  -- "$BUILD/bin/opt" -passes=dce -S -o /dev/null @@ 2>/dev/null
+
+
+afl-fuzz -i ~/everything/fuzzing-proj/seeds   -o ~/everything/fuzzing-proj/compiler-fuzz-optim/findings   -m none   -- "$BUILD/bin/opt" -passes=dce -S -o /dev/null @@ 2>/dev/null
