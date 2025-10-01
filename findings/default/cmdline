@@ -1,0 +1,6 @@
+/home/yashseella/everything/fuzzing-proj/llvm-project/build-afl/bin/opt
+-passes=dce
+-S
+-o
+/dev/null
+@@

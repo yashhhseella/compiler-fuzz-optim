@@ -1,0 +1,8 @@
+# environment variables:
+AFL_DEBUG=1
+AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+AFL_IMPORT_FIRST=1
+AFL_KILL_SIGNAL=9
+AFL_MAP_SIZE=8388608
+# command line:
+'afl-fuzz' '-i' '/home/yashseella/everything/fuzzing-proj/seeds' '-o' '/home/yashseella/everything/fuzzing-proj/compiler-fuzz-optim/findings' '-m' 'none' '--' '/home/yashseella/everything/fuzzing-proj/llvm-project/build-afl/bin/opt' '-passes=dce' '-S' '-o' '/dev/null' '@@'
